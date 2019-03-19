@@ -21,6 +21,8 @@ import xml.etree.ElementTree as ET
 if os.getenv('MMD_SKIP_VALGRIND'):
     sys.exit(77)
 
+source_root = os.getenv("MESON_SOURCE_ROOT")
+
 failed = False
 
 # Get the list of tests to run
@@ -53,8 +55,11 @@ with tempfile.TemporaryDirectory(prefix="libmodulemd_valgrind_") as tmpdirname:
         valgrind_command = "/usr/bin/valgrind " \
                            "--leak-check=full " \
                            "--suppressions=/usr/share/glib-2.0/valgrind/glib.supp " \
+                           "--suppressions={0}/contrib/valgrind.supp " \
+                           "--suppressions={0}/contrib/valgrind-python.supp " \
                            "--xml=yes " \
-                           "--xml-file=%s/%s.xml " % (tmpdirname, test)
+                           "--xml-file={1}/{2}.xml ".format(
+                               source_root, tmpdirname, test)
         proc_result = subprocess.run(
             [
                 'meson',
