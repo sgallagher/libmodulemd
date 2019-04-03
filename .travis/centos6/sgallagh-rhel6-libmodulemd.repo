@@ -1,0 +1,10 @@
+[sgallagh-rhel6-libmodulemd]
+name=Copr repo for rhel6-libmodulemd owned by sgallagh
+baseurl=https://copr-be.cloud.fedoraproject.org/results/sgallagh/rhel6-libmodulemd/epel-6-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/sgallagh/rhel6-libmodulemd/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

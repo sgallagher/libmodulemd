@@ -1,0 +1,20 @@
+FROM @IMAGE@
+
+MAINTAINER Stephen Gallagher <sgallagh@redhat.com>
+
+ARG TARBALL
+
+ADD centos6/sgallagh-rhel6-libmodulemd.repo /etc/yum.repos.d
+
+RUN yum -y install epel-release centos-release-scl \
+    && yum -y install \
+	devtoolset-8 \
+	git-core \
+	glib2-devel \
+	gtk-doc \
+	libyaml-devel \
+	meson \
+	ninja-build \
+	pkgconfig \
+	sudo \
+    && yum -y clean all

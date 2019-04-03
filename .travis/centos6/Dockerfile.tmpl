@@ -1,0 +1,12 @@
+FROM fedora-modularity/libmodulemd-deps-@RELEASE@
+
+MAINTAINER Stephen Gallagher <sgallagh@redhat.com>
+
+ARG TARBALL
+
+ADD $TARBALL /builddir/
+
+add centos6/yaml-0.1.pc /usr/lib64/pkgconfig/yaml-0.1.pc
+
+ENTRYPOINT exec scl enable devtoolset-8 /builddir/.travis/centos6/travis-tasks.sh
+

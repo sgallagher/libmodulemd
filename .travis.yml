@@ -33,6 +33,8 @@ jobs:
       script: ./.travis/travis-fedora.sh
     - name: "CentOS 7"
       script: ./.travis/travis-centos7.sh
+    - name: "CentOS 6"
+      script: ./.travis/travis-centos6.sh
     - name: "Documentation Update"
       script: 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./.travis/travis-docs.sh; fi'
     - name: "openSUSE tumbleweed"
