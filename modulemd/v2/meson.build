@@ -12,7 +12,6 @@
 # -- Library -- #
 
 test_installed_lib = get_option('test_installed_lib')
-skip_introspection = get_option('skip_introspection')
 
 if test_installed_lib
     # If we're just running the tests on a library that's already installed,

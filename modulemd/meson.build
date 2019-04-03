@@ -289,7 +289,7 @@ test('pycodestyle', pycodestyle,
 
 if test_dirty_git
     dirty_repo_scripts = [ files('common/tests/test-dirty.py') ]
-    test('test_dirty_repo', python3,
+    test('test_dirty_repo', py3_testrunner,
          args: dirty_repo_scripts)
 endif
 
@@ -312,7 +312,7 @@ endif
 
 if valgrind.found()
     modulemd_valgrind_scripts = files('common/tests/test-valgrind.py')
-    test ('valgrind', python3,
+    test ('valgrind', py3_testrunner,
           env : test_env,
           args : modulemd_valgrind_scripts,
           timeout : 600)

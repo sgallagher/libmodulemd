@@ -47,6 +47,8 @@ foreach cflag: test_cflags
   endif
 endforeach
 
+skip_introspection = get_option('skip_introspection')
+
 pymod = import('python')
 gnome = import('gnome')
 pkg = import('pkgconfig')
@@ -72,6 +74,16 @@ if with_py2_overrides
     python2 = pymod.find_installation('python2')
 else
     python2 = disabler()
+endif
+
+# Certain tests should run even if we aren't generating bindings
+py3_testrunner = python3
+py2_testrunner = python2
+
+# If we aren't generating bindings, don't run any tests that require them
+if skip_introspection
+     python3 = disabler()
+     python2 = disabler()
 endif
 
 spec_tmpl = find_program('spec_tmpl.sh')
@@ -127,4 +139,8 @@ configure_file(
 )
 
 subdir('modulemd')
-subdir('bindings/python')
+
+if not skip_introspection
+    subdir('bindings/python')
+endif
+
