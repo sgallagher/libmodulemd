@@ -32,7 +32,7 @@ jobs:
     - name: "Fedora rawhide"
       script: ./.travis/travis-fedora.sh
     - name: "CentOS 7"
-      script: ./.travis/travis-centos.sh
+      script: ./.travis/travis-centos7.sh
     - name: "Documentation Update"
       script: 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./.travis/travis-docs.sh; fi'
     - name: "openSUSE tumbleweed"
