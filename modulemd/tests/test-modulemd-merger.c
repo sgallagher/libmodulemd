@@ -52,7 +52,7 @@ merger_test_deduplicate (CommonMmdTestFixture *fixture,
   g_autofree gchar *deduplicated = NULL;
 
   yaml_path =
-    g_strdup_printf ("%s/f29-updates.yaml", g_getenv ("TEST_DATA_PATH"));
+    g_strdup_printf ("%s/f29-updates.yaml.gz", g_getenv ("TEST_DATA_PATH"));
 
   index = modulemd_module_index_new ();
 

@@ -198,7 +198,7 @@ class TestModuleIndexMerger(TestBase):
         updates_index.update_from_file(
             path.join(
                 self.test_data_path,
-                "f29-updates.yaml"), True)
+                "f29-updates.yaml.gz"), True)
 
         merger = Modulemd.ModuleIndexMerger()
         merger.associate_index(fedora_index, 0)

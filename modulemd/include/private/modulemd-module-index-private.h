@@ -14,6 +14,7 @@
 #pragma once
 
 #include <glib-object.h>
+#include <squishy.h>
 #include <yaml.h>
 #include "modulemd-module-index.h"
 
@@ -26,6 +27,18 @@ G_BEGIN_DECLS
  * @short_description: #ModulemdModuleIndex methods that should be used only
  * by internal consumers.
  */
+
+
+/**
+ * modulemd_cr_close:
+ * @fh: (inout): A filehandle opened by cr_open()
+ *
+ * Since: 2.8
+ */
+void
+modulemd_cr_close (CR_FILE *fh);
+
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (CR_FILE, modulemd_cr_close);
 
 
 /**

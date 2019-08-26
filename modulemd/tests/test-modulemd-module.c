@@ -434,7 +434,7 @@ modulemd_test_remove_streams (void)
 
   f29_updates = modulemd_module_index_new ();
   yaml_path =
-    g_strdup_printf ("%s/f29-updates.yaml", g_getenv ("TEST_DATA_PATH"));
+    g_strdup_printf ("%s/f29-updates.yaml.gz", g_getenv ("TEST_DATA_PATH"));
   g_assert_true (modulemd_module_index_update_from_file (
     f29_updates, yaml_path, TRUE, &failures, &error));
   g_assert_no_error (error);

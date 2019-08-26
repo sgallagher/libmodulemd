@@ -52,6 +52,7 @@ pkg = import('pkgconfig')
 gobject = dependency('gobject-2.0')
 yaml = dependency('yaml-0.1')
 gtkdoc = dependency('gtk-doc')
+squishy = dependency('libsquishy-1.0')
 
 glib_prefix = dependency('glib-2.0').get_pkgconfig_variable('prefix')
 glib_docpath = join_paths(glib_prefix, 'share', 'gtk-doc', 'html')

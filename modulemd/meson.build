@@ -191,6 +191,7 @@ modulemd_lib = library(
     include_directories : include_dirs,
     dependencies : [
         gobject,
+        squishy,
         yaml,
         build_lib,
     ],
@@ -227,6 +228,7 @@ modulemd_validator = executable(
     include_directories : include_dirs,
     dependencies : [
         gobject,
+        squishy,
         yaml,
         modulemd_dep
     ],

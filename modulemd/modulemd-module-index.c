@@ -14,6 +14,7 @@
 #include <errno.h>
 #include <glib.h>
 #include <inttypes.h>
+#include <squishy.h>
 #include <yaml.h>
 
 #include "modulemd-errors.h"
@@ -458,6 +459,45 @@ modulemd_module_index_dump_to_emitter (ModulemdModuleIndex *self,
 }
 
 
+void
+modulemd_cr_close (CR_FILE *fh)
+{
+  g_autoptr (GError) tmp_err = NULL;
+
+  cr_close (fh, &tmp_err);
+
+  if (tmp_err != NULL)
+    {
+      /* If we got here, we're already done with the file anyway, so we'll
+       * just log the error and continue, leaking a handle.
+       */
+      g_warning ("Could not close file: %s", tmp_err->message);
+    }
+}
+
+
+static gint
+compressed_file_read_fn (void *data,
+                         unsigned char *buffer,
+                         size_t size,
+                         size_t *size_read)
+{
+  int ret;
+  GError *tmp_err = NULL;
+  CR_FILE *cr_file = (CR_FILE *)data;
+
+  ret = cr_read (cr_file, buffer, size, &tmp_err);
+  if (ret == CR_CW_ERR)
+    {
+      g_clear_pointer (&tmp_err, g_error_free);
+      return 0;
+    }
+
+  *size_read = ret;
+  return 1;
+}
+
+
 gboolean
 modulemd_module_index_update_from_file (ModulemdModuleIndex *self,
                                         const gchar *yaml_file,
@@ -470,24 +510,25 @@ modulemd_module_index_update_from_file (ModulemdModuleIndex *self,
 
   g_return_val_if_fail (MODULEMD_IS_MODULE_INDEX (self), FALSE);
 
-  int saved_errno;
-  g_autoptr (FILE) yaml_stream = NULL;
+  g_autoptr (CR_FILE) yaml = NULL;
 
-  yaml_stream = g_fopen (yaml_file, "rb");
-  saved_errno = errno;
+  g_autoptr (GError) nested_error = NULL;
 
-  if (yaml_stream == NULL)
+  yaml = cr_open (
+    yaml_file, CR_CW_MODE_READ, CR_CW_AUTO_DETECT_COMPRESSION, &nested_error);
+
+  if (nested_error != NULL)
     {
       g_set_error (error,
                    MODULEMD_ERROR,
                    MODULEMD_YAML_ERROR_OPEN,
                    "Failed to open file: %s",
-                   g_strerror (saved_errno));
+                   nested_error->message);
       return FALSE;
     }
 
-  return modulemd_module_index_update_from_stream (
-    self, yaml_stream, strict, failures, error);
+  return modulemd_module_index_update_from_custom (
+    self, compressed_file_read_fn, yaml, strict, failures, error);
 }
 
 

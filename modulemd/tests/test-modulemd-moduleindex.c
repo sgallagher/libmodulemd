@@ -972,7 +972,7 @@ module_index_test_get_default_streams (void)
   g_autoptr (GHashTable) default_streams = NULL;
 
   yaml_path =
-    g_strdup_printf ("%s/f29-updates.yaml", g_getenv ("TEST_DATA_PATH"));
+    g_strdup_printf ("%s/f29-updates.yaml.gz", g_getenv ("TEST_DATA_PATH"));
   g_assert_nonnull (yaml_path);
 
   index = modulemd_module_index_new ();
