@@ -58,6 +58,27 @@ with_rpmio = get_option('rpmio')
 with_libmagic = get_option('libmagic')
 
 rpm = dependency('rpm', required : with_rpmio)
+
+if rpm.found()
+    zck_code = '''
+#include <rpm/rpmio.h>
+
+int main(int argc, char **argv) {
+    FD_t fd = Fopen("/dev/null", "r.garbage");
+    return fd == NULL;
+}
+    '''
+    zck_run_result = cc.run (zck_code, name : 'zchunk', dependencies : rpm)
+
+    if zck_run_result.returncode() == 0
+        with_zck = true
+    else
+        with_zck = false
+    endif
+else
+    with_zck = false
+endif
+
 magic = cc.find_library('magic', required : with_libmagic)
 
 glib_prefix = dependency('glib-2.0').get_pkgconfig_variable('prefix')

@@ -70,6 +70,12 @@ modulemd_detect_compression (const gchar *filename, int fd, GError **error)
     {
       return MODULEMD_COMPRESSION_TYPE_XZ_COMPRESSION;
     }
+#ifdef HAVE_ZCK
+  else if (g_str_has_suffix (filename, ".zck"))
+    {
+      return MODULEMD_COMPRESSION_TYPE_ZCK_COMPRESSION;
+    }
+#endif
   else if (g_str_has_suffix (filename, ".yaml") ||
            g_str_has_suffix (filename, ".yml") ||
            g_str_has_suffix (filename, ".txt"))
@@ -104,7 +110,7 @@ modulemd_detect_compression (const gchar *filename, int fd, GError **error)
     }
 
   mime_type = magic_descriptor (magic, magic_fd);
-  close(magic_fd);
+  close (magic_fd);
 
   if (mime_type)
     {
@@ -188,6 +194,7 @@ modulemd_compression_suffix (ModulemdCompressionTypeEnum comtype)
     case MODULEMD_COMPRESSION_TYPE_GZ_COMPRESSION: return ".gz";
     case MODULEMD_COMPRESSION_TYPE_BZ2_COMPRESSION: return ".bz2";
     case MODULEMD_COMPRESSION_TYPE_XZ_COMPRESSION: return ".xz";
+    case MODULEMD_COMPRESSION_TYPE_ZCK_COMPRESSION: return ".zck";
     default: return NULL;
     }
 }
@@ -208,6 +215,8 @@ get_comtype_string (ModulemdCompressionTypeEnum comtype)
     case MODULEMD_COMPRESSION_TYPE_BZ2_COMPRESSION: return "bzdio"; break;
 
     case MODULEMD_COMPRESSION_TYPE_XZ_COMPRESSION: return "xzdio"; break;
+
+    case MODULEMD_COMPRESSION_TYPE_ZCK_COMPRESSION: return "zstdio"; break;
 
     default:
       g_info ("Unknown compression type: %d", comtype);

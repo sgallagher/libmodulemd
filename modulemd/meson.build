@@ -186,6 +186,7 @@ cdata = configuration_data()
 cdata.set_quoted('LIBMODULEMD_VERSION', libmodulemd_version)
 cdata.set('HAVE_RPMIO', rpm.found())
 cdata.set('HAVE_LIBMAGIC', magic.found())
+cdata.set('HAVE_ZCK', with_zck)
 configure_file(
   output : 'config.h',
   configuration : cdata

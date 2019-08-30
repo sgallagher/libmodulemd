@@ -1058,6 +1058,9 @@ test_module_index_read_compressed (void)
     { .filename = "gzipped.yaml.gz", .succeeds = TRUE },
     { .filename = "xzipped", .succeeds = TRUE },
     { .filename = "xzipped.yaml.xz", .succeeds = TRUE },
+#ifdef HAVE_ZCK
+    { .filename = "zchunked.yaml.zck", .succeeds = TRUE },
+#endif
     { .filename = NULL }
   };
 #else /* HAVE_LIBMAGIC */
@@ -1080,6 +1083,9 @@ test_module_index_read_compressed (void)
       .error_domain = MODULEMD_YAML_ERROR,
       .error_code = MODULEMD_YAML_ERROR_UNPARSEABLE },
     { .filename = "xzipped.yaml.xz", .succeeds = TRUE },
+#ifdef HAVE_ZCK
+    { .filename = "zchunked.yaml.zck", .succeeds = TRUE },
+#endif
     { .filename = NULL }
   };
 #endif /* HAVE_LIBMAGIC */
@@ -1107,6 +1113,10 @@ test_module_index_read_compressed (void)
       .error_domain = MODULEMD_ERROR,
       .error_code = MODULEMD_ERROR_NOT_IMPLEMENTED },
     { .filename = "xzipped.yaml.xz",
+      .succeeds = FALSE,
+      .error_domain = MODULEMD_ERROR,
+      .error_code = MODULEMD_ERROR_NOT_IMPLEMENTED },
+    { .filename = "zchunked.yaml.zck",
       .succeeds = FALSE,
       .error_domain = MODULEMD_ERROR,
       .error_code = MODULEMD_ERROR_NOT_IMPLEMENTED },
