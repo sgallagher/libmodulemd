@@ -203,8 +203,7 @@ test_parse_yaml_mismatch (void)
 
   entry = modulemd_rpm_map_entry_parse_yaml (&parser, TRUE, &error);
   g_assert_null (entry);
-  g_assert_error (
-    error, MODULEMD_YAML_ERROR, MODULEMD_YAML_ERROR_INCONSISTENT);
+  g_assert_error (error, MODULEMD_YAML_ERROR, MMD_YAML_ERROR_INCONSISTENT);
 }
 
 static void

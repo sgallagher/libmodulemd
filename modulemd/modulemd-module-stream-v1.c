@@ -1175,7 +1175,7 @@ modulemd_module_stream_v1_validate (ModulemdModuleStream *self, GError **error)
     {
       g_set_error (error,
                    MODULEMD_YAML_ERROR,
-                   MODULEMD_YAML_ERROR_MISSING_REQUIRED,
+                   MMD_YAML_ERROR_MISSING_REQUIRED,
                    "Summary is missing");
       return FALSE;
     }
@@ -1184,7 +1184,7 @@ modulemd_module_stream_v1_validate (ModulemdModuleStream *self, GError **error)
     {
       g_set_error (error,
                    MODULEMD_YAML_ERROR,
-                   MODULEMD_YAML_ERROR_MISSING_REQUIRED,
+                   MMD_YAML_ERROR_MISSING_REQUIRED,
                    "Description is missing");
       return FALSE;
     }
@@ -1193,7 +1193,7 @@ modulemd_module_stream_v1_validate (ModulemdModuleStream *self, GError **error)
     {
       g_set_error (error,
                    MODULEMD_YAML_ERROR,
-                   MODULEMD_YAML_ERROR_MISSING_REQUIRED,
+                   MMD_YAML_ERROR_MISSING_REQUIRED,
                    "Module license is missing");
       return FALSE;
     }
@@ -2585,7 +2585,7 @@ modulemd_module_stream_v1_emit_yaml (ModulemdModuleStreamV1 *self,
     {
       g_set_error (error,
                    MODULEMD_YAML_ERROR,
-                   MODULEMD_YAML_ERROR_EMIT,
+                   MMD_YAML_ERROR_EMIT,
                    "Module licenses is not allowed to be empty");
       return FALSE;
     }

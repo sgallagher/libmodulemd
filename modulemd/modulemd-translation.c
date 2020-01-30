@@ -463,7 +463,7 @@ modulemd_translation_parse_yaml_entries (yaml_parser_t *parser,
     {
       g_set_error (error,
                    MODULEMD_YAML_ERROR,
-                   MODULEMD_YAML_ERROR_EMIT,
+                   MMD_YAML_ERROR_EMIT,
                    "Somehow got a NULL hash table here.");
     }
 

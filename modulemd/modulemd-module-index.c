@@ -166,7 +166,7 @@ add_subdoc (ModulemdModuleIndex *self,
         default:
           g_set_error (error,
                        MODULEMD_YAML_ERROR,
-                       MODULEMD_YAML_ERROR_PARSE,
+                       MMD_YAML_ERROR_PARSE,
                        "Invalid mdversion for a stream object");
           return FALSE;
         }
@@ -233,7 +233,7 @@ add_subdoc (ModulemdModuleIndex *self,
         default:
           g_set_error (error,
                        MODULEMD_YAML_ERROR,
-                       MODULEMD_YAML_ERROR_PARSE,
+                       MMD_YAML_ERROR_PARSE,
                        "Invalid mdversion for a defaults object");
           return FALSE;
         }
@@ -261,7 +261,7 @@ add_subdoc (ModulemdModuleIndex *self,
     default:
       g_set_error (error,
                    MODULEMD_YAML_ERROR,
-                   MODULEMD_YAML_ERROR_PARSE,
+                   MMD_YAML_ERROR_PARSE,
                    "Invalid doctype encountered");
       return FALSE;
     }
@@ -556,7 +556,7 @@ modulemd_module_index_update_from_file (ModulemdModuleIndex *self,
     {
       g_set_error (error,
                    MODULEMD_ERROR,
-                   MODULEMD_YAML_ERROR_OPEN,
+                   MMD_YAML_ERROR_OPEN,
                    "Failed to open file: %s",
                    g_strerror (saved_errno));
       return FALSE;
@@ -669,7 +669,7 @@ modulemd_module_index_update_from_string (ModulemdModuleIndex *self,
   if (!yaml_string)
     {
       g_set_error (
-        error, MODULEMD_ERROR, MODULEMD_YAML_ERROR_OPEN, "No string provided");
+        error, MODULEMD_ERROR, MMD_YAML_ERROR_OPEN, "No string provided");
       return FALSE;
     }
 
@@ -700,7 +700,7 @@ modulemd_module_index_update_from_stream (ModulemdModuleIndex *self,
   if (!yaml_stream)
     {
       g_set_error (
-        error, MODULEMD_ERROR, MODULEMD_YAML_ERROR_OPEN, "No stream provided");
+        error, MODULEMD_ERROR, MMD_YAML_ERROR_OPEN, "No stream provided");
       return FALSE;
     }
 

@@ -173,7 +173,7 @@ modulemd_module_stream_read_yaml (yaml_parser_t *parser,
     {
       g_set_error_literal (error,
                            MODULEMD_YAML_ERROR,
-                           MODULEMD_YAML_ERROR_UNPARSEABLE,
+                           MMD_YAML_ERROR_UNPARSEABLE,
                            "Parser error");
       return NULL;
     }
@@ -181,7 +181,7 @@ modulemd_module_stream_read_yaml (yaml_parser_t *parser,
     {
       g_set_error_literal (error,
                            MODULEMD_YAML_ERROR,
-                           MODULEMD_YAML_ERROR_PARSE,
+                           MMD_YAML_ERROR_PARSE,
                            "YAML didn't begin with STREAM_START.");
       return NULL;
     }
@@ -192,7 +192,7 @@ modulemd_module_stream_read_yaml (yaml_parser_t *parser,
     {
       g_set_error_literal (error,
                            MODULEMD_YAML_ERROR,
-                           MODULEMD_YAML_ERROR_UNPARSEABLE,
+                           MMD_YAML_ERROR_UNPARSEABLE,
                            "Parser error");
       return NULL;
     }
@@ -200,7 +200,7 @@ modulemd_module_stream_read_yaml (yaml_parser_t *parser,
     {
       g_set_error_literal (error,
                            MODULEMD_YAML_ERROR,
-                           MODULEMD_YAML_ERROR_PARSE,
+                           MMD_YAML_ERROR_PARSE,
                            "YAML didn't begin with STREAM_START.");
       return NULL;
     }
@@ -226,7 +226,7 @@ modulemd_module_stream_read_yaml (yaml_parser_t *parser,
     {
       g_set_error (error,
                    MODULEMD_YAML_ERROR,
-                   MODULEMD_YAML_ERROR_PARSE,
+                   MMD_YAML_ERROR_PARSE,
                    "Expected `document: modulemd[-packager]`, got %d",
                    modulemd_subdocument_info_get_doctype (subdoc));
       return NULL;
@@ -258,7 +258,7 @@ modulemd_module_stream_read_yaml (yaml_parser_t *parser,
     default:
       g_set_error (error,
                    MODULEMD_YAML_ERROR,
-                   MODULEMD_YAML_ERROR_PARSE,
+                   MMD_YAML_ERROR_PARSE,
                    "Unknown ModuleStream version: %" PRIu64,
                    modulemd_subdocument_info_get_mdversion (subdoc));
       return NULL;
@@ -270,7 +270,7 @@ modulemd_module_stream_read_yaml (yaml_parser_t *parser,
     {
       g_set_error_literal (error,
                            MODULEMD_YAML_ERROR,
-                           MODULEMD_YAML_ERROR_UNPARSEABLE,
+                           MMD_YAML_ERROR_UNPARSEABLE,
                            "Parser error");
       return NULL;
     }
@@ -279,7 +279,7 @@ modulemd_module_stream_read_yaml (yaml_parser_t *parser,
     {
       g_set_error_literal (error,
                            MODULEMD_YAML_ERROR,
-                           MODULEMD_YAML_ERROR_PARSE,
+                           MMD_YAML_ERROR_PARSE,
                            "YAML contained more than a single subdocument");
       return NULL;
     }

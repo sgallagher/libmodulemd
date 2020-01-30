@@ -1080,7 +1080,7 @@ test_module_index_read_compressed (void)
     { .filename = "bzipped",
       .succeeds = FALSE,
       .error_domain = MODULEMD_YAML_ERROR,
-      .error_code = MODULEMD_YAML_ERROR_UNPARSEABLE },
+      .error_code = MMD_YAML_ERROR_UNPARSEABLE },
     {
       .filename = "bzipped.yaml.bz2",
       .succeeds = TRUE,
@@ -1088,12 +1088,12 @@ test_module_index_read_compressed (void)
     { .filename = "gzipped",
       .succeeds = FALSE,
       .error_domain = MODULEMD_YAML_ERROR,
-      .error_code = MODULEMD_YAML_ERROR_UNPARSEABLE },
+      .error_code = MMD_YAML_ERROR_UNPARSEABLE },
     { .filename = "gzipped.yaml.gz", .succeeds = TRUE },
     { .filename = "xzipped",
       .succeeds = FALSE,
       .error_domain = MODULEMD_YAML_ERROR,
-      .error_code = MODULEMD_YAML_ERROR_UNPARSEABLE },
+      .error_code = MMD_YAML_ERROR_UNPARSEABLE },
     { .filename = "xzipped.yaml.xz", .succeeds = TRUE },
     { .filename = NULL }
   };
