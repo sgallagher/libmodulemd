@@ -17,6 +17,7 @@
 #include "modulemd-module-stream-v2.h"
 #include "modulemd-module-stream-v3.h"
 #include "modulemd-module-stream.h"
+#include "private/glib-extensions.h"
 #include "private/modulemd-build-config.h"
 #include "private/modulemd-component-private.h"
 #include "private/modulemd-module-stream-private.h"
