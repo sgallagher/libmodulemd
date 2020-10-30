@@ -755,7 +755,7 @@ stream_expansion_helper (ModulemdDependencies *deps,
           return FALSE;
         }
 
-      new_expanded_deps = g_ptr_array_new ();
+      new_expanded_deps = g_ptr_array_new_with_free_func (g_object_unref);
 
       /* for each module stream... */
       for (guint j = 0; j < g_strv_length (streams); j++)
@@ -853,7 +853,7 @@ stream_expansion_resolve_platform (GPtrArray **expanded_deps, GError **error)
   g_debug ("Expansion: stream_expansion_resolve_platform called with %d deps",
            (*expanded_deps)->len);
 
-  new_expanded_deps = g_ptr_array_new ();
+  new_expanded_deps = g_ptr_array_new_with_free_func (g_object_unref);
 
   /* for every expanded dependency... */
   for (guint i = 0; i < (*expanded_deps)->len; i++)
@@ -960,7 +960,7 @@ stream_expansion_dedup (GPtrArray **expanded_deps, GError **error)
   g_debug ("Expansion: stream_expansion_dedup called with %d deps",
            (*expanded_deps)->len);
 
-  deduped_expanded_deps = g_ptr_array_new ();
+  deduped_expanded_deps = g_ptr_array_new_with_free_func (g_object_unref);
 
   /*
    * this is horribly inefficient, but it's the best one can do without a way
@@ -1081,7 +1081,7 @@ modulemd_module_stream_expand_v2_to_v3_deps (ModulemdModuleStreamV2 *v2_stream,
 
   g_debug ("Expansion: beginning v2 to v3 stream dependency expansion");
 
-  all_expanded_deps = g_ptr_array_new ();
+  all_expanded_deps = g_ptr_array_new_with_free_func (g_object_unref);
 
   /* iterate through all of the V2 stream dependencies */
   for (guint i = 0; i < v2_stream->dependencies->len; i++)
