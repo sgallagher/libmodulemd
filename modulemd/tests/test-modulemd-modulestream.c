@@ -987,9 +987,9 @@ module_stream_test_stream_deps_expansion_v2_to_v3 (void)
   gboolean ret;
   g_autoptr (ModulemdModuleStreamV2) stream = NULL;
   g_autoptr (ModulemdDependencies) dep = NULL;
-  g_autoptr (ModulemdBuildConfig) ex_dep = NULL;
   g_autoptr (GPtrArray) expanded_deps = NULL;
   g_autoptr (GError) error = NULL;
+  ModulemdBuildConfig *ex_dep = NULL;
   MMD_INIT_YAML_EMITTER (emitter);
   MMD_INIT_YAML_STRING (&emitter, yaml_string);
 
@@ -1036,6 +1036,7 @@ module_stream_test_stream_deps_expansion_v2_to_v3 (void)
   /* TODO: fix this test to do something useful */
 
   g_clear_pointer (&expanded_deps, g_ptr_array_unref);
+  g_clear_object (&error);
   g_clear_object (&dep);
   g_clear_object (&stream);
 }
