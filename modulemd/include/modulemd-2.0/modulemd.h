@@ -45,7 +45,7 @@ G_BEGIN_DECLS
  * SECTION: modulemd
  * @title: Modulemd
  * @stability: stable
- * @short_description: User's Guide for libmodulemd
+ * @short_description: User's Guide for libmodulemd testing github action
  *
  * # Working with repodata (DNF use-case)
  * The libmodulemd API provides a number of convenience tools for interacting
